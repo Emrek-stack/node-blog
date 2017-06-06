@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var fs = require('fs');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -7,7 +8,9 @@ var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var cookieParser = require('cookie-parser'); // the session is stored in a cookie, so we use this to parse it
 var authChecker = require('./middleware/auth').authChecker;
-
+var join = require('path').join;
+var mongoose = require('mongoose');
+var config = require('./config');
 
 
 var index = require('./routes/indexRoutes');
@@ -25,48 +28,51 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: true
+  extended: true
 }));
 
 // app.use(cookieParser());
 // app.use(expressSession({ secret: 'somesecrettokenhere' }));
 
 //app.use(express.static(path.join(__dirname, 'public')));
+
+const models = join(__dirname, 'model');
 app.use(express.static(path.resolve(__dirname, 'public')));
 
 
+// Bootstrap models
+fs.readdirSync(models)
+  .filter(file => ~file.search(/^[^\.].*\.js$/))
+  .forEach(file => require(join(models, file)));
 
 
+// Bootstrap routes
 app.use('/', index);
 app.use('/users', users);
-// app.use('/item', item);
 
-// catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//     var err = new Error('Not Found');
-//     err.status = 404;
-//     next(err);
-// });
+
+connect()
+  .on('error', console.log)
+  .on('disconnected', connect)
+  //.once('open', listen);
+
 
 // Always return the main index.html, so react-router render the route in the client
-
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
 
-
-// // error handler
-// app.use(function(err, req, res, next) {
-//     // set locals, only providing error in development
-//     res.locals.message = err.message;
-//     res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-//     // render the error page
-//     res.status(err.status || 500);
-//     res.render('error');
-// });
-
-
+// Connect to Mongo on start
+function connect() {
+  var options = {
+    server: {
+      socketOptions: {
+        keepAlive: 1
+      }
+    }
+  };
+  return mongoose.connect(config.db, options).connection;
+}
 
 module.exports = app;

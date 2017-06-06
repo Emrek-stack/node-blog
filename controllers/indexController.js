@@ -6,7 +6,6 @@ var mongo = require('mongodb');
 var multer = require('multer');
 
 var db = require('../helper/db');
-var item = require('../model/item');
 
 var storage = multer.diskStorage({
     destination: function(req, file, callback) {

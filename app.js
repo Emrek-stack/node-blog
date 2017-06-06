@@ -57,6 +57,8 @@ connect()
   //.once('open', listen);
 
 
+console.log(config.db);
+
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
@@ -71,8 +73,8 @@ function connect() {
         keepAlive: 1
       }
     }
-  };
-  return mongoose.connect(config.db, options).connection;
+  };    
+  return mongoose.connect("mongodb://blog:wxprj@172.104.129.105/blog", options).connection;
 }
 
 module.exports = app;

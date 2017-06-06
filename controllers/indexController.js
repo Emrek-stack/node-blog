@@ -6,7 +6,7 @@ var mongo = require('mongodb');
 var multer = require('multer');
 var { wrap: async } = require('co');
 
-var db = require('../helper/db');
+
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -41,7 +41,7 @@ module.exports = {
         const articles = yield Article.list(options);
         const count = yield Article.count();
 
-        respond(res, 'articles/index', {
+        respond(res, 'index', {
             title: 'Articles',
             articles: articles,
             page: page + 1,

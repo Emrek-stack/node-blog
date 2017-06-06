@@ -18,4 +18,6 @@ router.get('/list', function(req, res) {
 
 // router.post('/upload', indexController.upload);
 
+router.get('/', indexController.index);
+
 module.exports = router;

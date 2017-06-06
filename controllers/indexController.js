@@ -8,10 +8,10 @@ var multer = require('multer');
 var db = require('../helper/db');
 
 var storage = multer.diskStorage({
-    destination: function(req, file, callback) {
+    destination: function (req, file, callback) {
         callback(null, './uploads');
     },
-    filename: function(req, file, callback) {
+    filename: function (req, file, callback) {
         callback(null, file.fieldname + '-' + Date.now());
     }
 });
@@ -24,5 +24,27 @@ var converter = require('../helper/converter');
 var config = require('../config.json');
 
 module.exports = {
+    index: async(function* (req, res) {
+        const page = (req.query.page > 0 ? req.query.page : 1) - 1;
+        const _id = req.query.item;
+        const limit = 30;
+        const options = {
+            limit: limit,
+            page: page
+        };
 
+        if (_id) options.criteria = {
+            _id
+        };
+
+        const articles = yield Article.list(options);
+        const count = yield Article.count();
+
+        respond(res, 'articles/index', {
+            title: 'Articles',
+            articles: articles,
+            page: page + 1,
+            pages: Math.ceil(count / limit)
+        });
+    })
 }

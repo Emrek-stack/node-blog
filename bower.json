@@ -1,0 +1,27 @@
+{
+  "name": "openshift-cartridge-nodejs-template",
+  "description": "Custom Node.js cartridge for OpenShift - sample application",
+  "main": "start.js",
+  "authors": [
+    "Ionut-Cristian Florescu <ionut.florescu@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.1.1",
+    "react": "^15.4.2",
+    "react-router": "^3.0.2",
+    "bootstrap-validator": "^0.11.9",
+    "react-bootstrap": "^0.30.7"
+  }
+}

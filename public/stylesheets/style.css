@@ -1,0 +1,73 @@
+* {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 18px;
+}
+
+.asteriskField {
+    color: red;
+}
+
+
+/* Flatten das boostrap */
+
+.well,
+.navbar-inner,
+.popover,
+.btn,
+.tooltip,
+input,
+select,
+textarea,
+pre,
+.progress,
+.modal,
+.add-on,
+.alert,
+.table-bordered,
+.nav>.active>a,
+.dropdown-menu,
+.tooltip-inner,
+.badge,
+.label,
+.input-group-addon,
+.img-polaroid {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+    border-collapse: collapse !important;
+    background-image: none !important;
+}
+
+.form-control:focus {
+    border-color: rgba(68, 68, 68, 0.51);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+.input-xs {
+    padding: 2px 5px;
+    max-width: 50px;
+}
+
+.checkbox,
+.radio {
+    position: relative;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.modal {
+    position: fixed;
+    top: 3%;
+    right: 3%;
+    left: 3%;
+    width: auto;
+    margin: 0;
+}
+
+.modal-body {
+    height: 90%;
+}

@@ -1,0 +1,9 @@
+{
+    "settings": {
+        "imagePath": "./modelImage/"
+    },
+    "user": {
+        "user": "emre",
+        "pass": "123456"
+    }
+}

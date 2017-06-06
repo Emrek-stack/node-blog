@@ -4,6 +4,7 @@ var Immutable = require('immutable');
 var moment = require('moment');
 var mongo = require('mongodb');
 var multer = require('multer');
+var { wrap: async } = require('co');
 
 var db = require('../helper/db');
 

@@ -27,23 +27,23 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use(cookieParser());
 // app.use(expressSession({ secret: 'somesecrettokenhere' }));
 
 //app.use(express.static(path.join(__dirname, 'public')));
 
-const models = join(__dirname, 'model');
-app.use(express.static(path.resolve(__dirname, 'public')));
+//const models = join(__dirname, 'model');
+//app.use(express.static(path.resolve(__dirname, 'public')));
 
 
 // Bootstrap models
-fs.readdirSync(models)
-  .filter(file => ~file.search(/^[^\.].*\.js$/))
-  .forEach(file => require(join(models, file)));
+// fs.readdirSync(models)
+//   .filter(file => ~file.search(/^[^\.].*\.js$/))
+//   .forEach(file => require(join(models, file)));
 
 
 // Bootstrap routes
@@ -60,9 +60,9 @@ connect()
 console.log(config.db);
 
 // Always return the main index.html, so react-router render the route in the client
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+// });
 
 
 // Connect to Mongo on start

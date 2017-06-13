@@ -9,6 +9,6 @@ var { wrap: async } = require('co');
 module.exports = {
     index: (req, res)=> 
     {
-       res.render('index');
+       res.render('index', {title:'aa'});
     }
 }

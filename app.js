@@ -52,9 +52,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Bootstrap models
-// fs.readdirSync(models)
-//   .filter(file => ~file.search(/^[^\.].*\.js$/))
-//   .forEach(file => require(join(models, file)));
+const models = join(__dirname, 'model');
+console.log(models);
+fs.readdirSync(models)
+  .filter(file => ~file.search(/^[^\.].*\.js$/))
+  .forEach(file => require(join(models, file)));
 
 
 // Bootstrap routes

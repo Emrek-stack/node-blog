@@ -1,12 +1,25 @@
-// grab the things we need
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+'use strict';
 
+/**
+ * Module dependencies.
+ */
+
+const mongoose = require('mongoose');
+//const notify = require('../mailer');
+
+// const Imager = require('imager');
+// const config = require('../../config');
+// const imagerConfig = require(config.root + '/config/imager.js');
+
+const Schema = mongoose.Schema;
 
 const getTags = tags => tags.join(',');
 const setTags = tags => tags.split(',');
 
-// create a schema
+/**
+ * Article Schema
+ */
+
 const ArticleSchema = new Schema({
     title: {
         type: String,
@@ -58,9 +71,25 @@ const ArticleSchema = new Schema({
 ArticleSchema.path('title').required(true, 'Article title cannot be blank');
 ArticleSchema.path('body').required(true, 'Article body cannot be blank');
 
-var Article = mongoose.model('article', ArticleSchema);
+/**
+ * Pre-remove hook
+ */
 
-module.exports = Article;
+ArticleSchema.pre('remove', function (next) {
+    // const imager = new Imager(imagerConfig, 'S3');
+    // const files = this.image.files;
+
+    // if there are files associated with the item, remove from the cloud too
+    // imager.remove(files, function (err) {
+    //   if (err) return next(err);
+    // }, 'article');
+
+    next();
+});
+
+/**
+ * Methods
+ */ 
 
 ArticleSchema.methods = {
 
@@ -175,3 +204,5 @@ ArticleSchema.statics = {
             .exec();
     }
 };
+
+mongoose.model('Article', ArticleSchema);

@@ -13,11 +13,17 @@ var mongoose = require('mongoose');
 var config = require('./config');
 var exphbs  = require('express-handlebars');
 
-var index = require('./routes/indexRoutes');
-var users = require('./routes/userRoutes');
-// var item = require('./routes/itemRoutes');
+var registerRoutes = require('./infra/fileRecursive');
+
+var index = require('./routes/web/indexRoutes');
+var users = require('./routes/web/userRoutes');
+
+var blog = require('./routes/admin/blogRoute');
 
 
+
+registerRoutes(app);
+ 
 
 var app = express();
 
@@ -54,6 +60,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Bootstrap routes
 app.use('/', index);
 app.use('/users', users);
+app.use('/admin/blog', blog )
 
 
 connect()

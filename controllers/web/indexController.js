@@ -4,11 +4,11 @@
 //var moment = require('moment');
 //var mongo = require('mongodb');
 //var multer = require('multer');
-var { wrap: async } = require('co');
+//var { wrap: async } = require('co');
 
 module.exports = {
     index: (req, res)=> 
     {
-       res.render('index', {title:'aa'});
+       res.render('web/index', {title:'aa'});
     }
 }

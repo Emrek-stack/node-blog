@@ -1,7 +1,7 @@
 // var express = require('express');
 // var router = express.Router();
 
-var config = require('../config.json');
+var config = require('../../config.json');
 
 module.exports = {
     login: function(req, res) {

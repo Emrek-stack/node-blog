@@ -24,6 +24,7 @@
     "express": "~4.14.0",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.0",
+    "glob": "^7.1.2",
     "immutable": "^3.8.1",
     "jade": "~1.11.0",
     "jquery": "^3.1.1",

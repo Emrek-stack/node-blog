@@ -89,7 +89,7 @@ ArticleSchema.pre('remove', function (next) {
 
 /**
  * Methods
- */ 
+ */
 
 ArticleSchema.methods = {
 
@@ -158,6 +158,10 @@ ArticleSchema.methods = {
         if (~index) this.comments.splice(index, 1);
         else throw new Error('Comment not found');
         return this.save();
+    },
+
+    save: function (article) {
+        new ArticleSchema(article).save();
     }
 };
 

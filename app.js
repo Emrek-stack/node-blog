@@ -11,7 +11,7 @@ var authChecker = require('./middleware/auth').authChecker;
 var join = require('path').join;
 var mongoose = require('mongoose');
 var config = require('./config');
-var exphbs  = require('express-handlebars');
+var exphbs = require('express-handlebars');
 
 var registerRoutes = require('./infra/fileRecursive');
 
@@ -23,7 +23,7 @@ var blog = require('./routes/admin/blogRoute');
 
 
 registerRoutes(app);
- 
+
 
 var app = express();
 
@@ -31,14 +31,18 @@ var app = express();
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main'
+}));
 app.set('view engine', 'handlebars');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -62,13 +66,13 @@ fs.readdirSync(models)
 // Bootstrap routes
 app.use('/', index);
 app.use('/users', users);
-app.use('/admin/blog', blog )
+app.use('/admin/blog', blog);
 
 
 connect()
   .on('error', console.log)
   .on('disconnected', connect)
-  //.once('open', listen);
+//.once('open', listen);
 
 
 console.log(config.db);
@@ -87,7 +91,7 @@ function connect() {
         keepAlive: 1
       }
     }
-  };    
+  };
   return mongoose.connect("mongodb://blog:wxprj@172.104.129.105/blog", options).connection;
 }
 

@@ -31,8 +31,6 @@ module.exports = {
         //     page: page + 1,
         //     pages: Math.ceil(count / limit)
         // });
-      res.render('web/home/index', {
-            title: 'aa'
-        });
+      res.render('web/home/index', {title: 'aa', layout: 'blogLayout.hbs' });
     }
 }

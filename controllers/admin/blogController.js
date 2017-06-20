@@ -2,12 +2,12 @@
 
 module.exports = {
     createGet: (req, res) => {
-        res.render('web/home/login', {
+        res.render('admin/blog/create', {
             title: 'aa', layout: 'blogLayout.hbs'
         });
     },
     createPost: (req, res) => {
-        res.send(req.session.email)    
+        res.send(req.body)    
     }
 
 }

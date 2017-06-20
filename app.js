@@ -19,6 +19,7 @@ var index = require('./routes/web/indexRoutes');
 var users = require('./routes/web/userRoutes');
 
 var blog = require('./routes/admin/blogRoute');
+var user = require('./routes/admin/userRoute');
 
 
 
@@ -70,6 +71,7 @@ fs.readdirSync(models)
 app.use('/', index);
 app.use('/users', users);
 app.use('/admin/blog', blog);
+app.use('/admin/user', user);
 
 
 connect()

@@ -4,7 +4,9 @@ var blogController = require('../../controllers/admin/blogController');
 
 
 //GET
-router.get('/create', blogController.create);
+router.route('/create')
+    .get(blogController.createGet)
+    .post(blogController.createPost);
 
 //router.post('/create', blogController.create);
 

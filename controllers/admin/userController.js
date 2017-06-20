@@ -7,7 +7,7 @@ module.exports = {
     },
     loginPost: (req, res) => {
 
-        res.send(req.body.username + ' ' + req.body.password);
+        res.json(req.body);
     }
 
 }

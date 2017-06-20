@@ -1,13 +1,13 @@
 
 
 module.exports = {
-    create: (req, res) => {
+    createGet: (req, res) => {
         res.render('web/home/login', {
             title: 'aa', layout: 'blogLayout.hbs'
         });
     },
-    create: (req, res) => {
-
+    createPost: (req, res) => {
+        res.send(req.body)    
     }
 
 }

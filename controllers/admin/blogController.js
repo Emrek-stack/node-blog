@@ -7,7 +7,7 @@ module.exports = {
         });
     },
     createPost: (req, res) => {
-        res.send(req.body)    
+        res.send(req.session.email)    
     }
 
 }

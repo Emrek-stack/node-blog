@@ -5,7 +5,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var expressSession = require('express-session');
+var session = require('express-session');
 var cookieParser = require('cookie-parser'); // the session is stored in a cookie, so we use this to parse it
 var authChecker = require('./middleware/auth').authChecker;
 var join = require('path').join;
@@ -50,6 +50,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({secret: 'ssshhhhh'}));
 // app.use(cookieParser());
 // app.use(expressSession({ secret: 'somesecrettokenhere' }));
 

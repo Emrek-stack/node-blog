@@ -1,4 +1,4 @@
-
+var ArticleSchema = require('../../model/article');
 
 module.exports = {
     createGet: (req, res) => {
@@ -7,6 +7,7 @@ module.exports = {
         });
     },
     createPost: (req, res) => {
+        var blog = new ArticleSchema.ArticleSchema();
         res.send(req.body)    
     }
 

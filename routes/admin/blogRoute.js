@@ -9,16 +9,7 @@ router.route('/create')
     .get(authChecker.authChecker, blogController.createGet)
     .post(authChecker.authChecker, blogController.createPost);
 
-//router.post('/create', blogController.create);
-
-// router.post('/update', indexController.update);
-
 // router.get('/getById', indexController.getById);
 
-// router.get('/updateCallInfo', indexController.updateCallInfo);
-
-// router.post('/upload', indexController.upload);
-
-//router.get('/', blogController.index);
 
 module.exports = router;

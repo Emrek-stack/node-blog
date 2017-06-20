@@ -7,7 +7,7 @@ module.exports = {
     },
     loginPost: (req, res) => {
 
-        res.render('admin/user/login2');
+        res.send(req.body.username + ' ' + req.body.password);
     }
 
 }

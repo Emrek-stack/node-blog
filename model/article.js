@@ -20,7 +20,7 @@ const setTags = tags => tags.split(',');
  * Article Schema
  */
 
-const ArticleSchema = new Schema({
+var ArticleSchema = new Schema({
     title: {
         type: String,
         default: '',
@@ -83,6 +83,7 @@ ArticleSchema.pre('remove', function (next) {
     // imager.remove(files, function (err) {
     //   if (err) return next(err);
     // }, 'article');
+    console.log("pre hoook");
 
     next();
 });

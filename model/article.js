@@ -32,7 +32,7 @@ var ArticleSchema = new Schema({
         trim: true
     },
     user: {
-        type: Schema.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User'
     },
     comments: [{
@@ -41,7 +41,7 @@ var ArticleSchema = new Schema({
             default: ''
         },
         user: {
-            type: Schema.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: 'User'
         },
         createdAt: {
@@ -210,4 +210,5 @@ ArticleSchema.statics = {
     }
 };
 
-mongoose.model('Article', ArticleSchema);
+let article = mongoose.model('Article', ArticleSchema);
+module.exports = article;

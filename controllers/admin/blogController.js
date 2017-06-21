@@ -8,10 +8,13 @@ module.exports = {
         });
     },
     createPost: (req, res) => {
-var post = new article({title: "My first post", author: "Yash Kumar", 
-													body: "We want to make documentation obsolete"});
+        var post = new article({
+            title: "My first post",
+            author: "Yash Kumar",
+            body: "We want to make documentation obsolete"
+        });
 
-        res.send(req.body)
+        res.send(post)
     }
 
 }

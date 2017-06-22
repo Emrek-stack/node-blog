@@ -30,8 +30,10 @@ module.exports = {
             users.forEach(function (user) {
                 userMap[user._id] = user;
             });
-
-            res.send(userMap);
+            res.render('admin/blog/list', {
+                model: userMap,
+                layout: 'blogLayout.hbs'
+            });
         });
 
 

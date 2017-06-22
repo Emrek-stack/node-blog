@@ -14,138 +14,24 @@ const setTags = tags => tags.split(',');
  * Article Schema
  */
 
-var ArticleSchema = new Schema({
-    title: {
+var TagSchema = new Schema({
+    tag: {
         type: String,
-        default: '',
+        required: true,
         trim: true
     },
-    body: {
-        type: String,
-        default: '',
-        trim: true
-    },
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    comments: [{
-        body: {
-            type: String,
-            default: ''
-        },
-        user: {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        },
-        createdAt: {
-            type: Date,
-            default: Date.now
-        }
-    }],
-    tags: {
-        type: [],
-        get: getTags,
-        set: setTags
-    },
-    image: {
-        cdnUri: String,
-        files: []
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
+    count: {
+        type: Number
     }
 });
 
-/**
- * Validations
- */
 
-ArticleSchema.path('title').required(true, 'Article title cannot be blank');
-ArticleSchema.path('body').required(true, 'Article body cannot be blank');
-
-/**
- * Pre-remove hook
- */
-
-ArticleSchema.pre('remove', function (next) {
-    // const imager = new Imager(imagerConfig, 'S3');
-    // const files = this.image.files;
-
-    // if there are files associated with the item, remove from the cloud too
-    // imager.remove(files, function (err) {
-    //   if (err) return next(err);
-    // }, 'article');
-    console.log("pre hoook");
-
-    next();
-});
 
 /**
  * Methods
  */
 
-ArticleSchema.methods = {
-
-    /**
-     * Save article and upload image
-     *
-     * @param {Object} images
-     * @api private
-     */
-
-    uploadAndSave: function (image) {
-        const err = this.validateSync();
-        if (err && err.toString()) throw new Error(err.toString());
-        return this.save();
-
-        /*
-        if (images && !images.length) return this.save();
-        const imager = new Imager(imagerConfig, 'S3');
-        imager.upload(images, function (err, cdnUri, files) {
-          if (err) return cb(err);
-          if (files.length) {
-            self.image = { cdnUri : cdnUri, files : files };
-          }
-          self.save(cb);
-        }, 'article');
-        */
-    },
-
-    /**
-     * Add comment
-     *
-     * @param {User} user
-     * @param {Object} comment
-     * @api private
-     */
-
-    
-
-    addComment: function (user, comment) {
-        this.comments.push({
-            body: comment.body,
-            user: user._id
-        });
-
-        if (!this.user.email) this.user.email = 'email@product.com';
-
-        notify.comment({
-            article: this,
-            currentUser: user,
-            comment: comment.body
-        });
-
-        return this.save();
-    },
-
-    /**
-     * Remove comment
-     *
-     * @param {commentId} String
-     * @api private
-     */
+TagSchema.methods = {
 
     removeComment: function (commentId) {
         const index = this.comments
@@ -162,30 +48,7 @@ ArticleSchema.methods = {
  * Statics
  */
 
-ArticleSchema.statics = {
-
-    /**
-     * Find article by id
-     *
-     * @param {ObjectId} id
-     * @api private
-     */
-
-    load: function (_id) {
-        return this.findOne({
-                _id
-            })
-            .populate('user', 'name email username')
-            .populate('comments.user')
-            .exec();
-    },
-
-    /**
-     * List articles
-     *
-     * @param {Object} options
-     * @api private
-     */
+TagSchema.statics = {
 
     list: function (options) {
         const criteria = options.criteria || {};
@@ -203,6 +66,6 @@ ArticleSchema.statics = {
 };
 
 
-var Article = mongoose.model('Article', ArticleSchema);
+var Tag = mongoose.model('Tag', TagSchema);
 
-module.exports = Article;
+module.exports = Tag;

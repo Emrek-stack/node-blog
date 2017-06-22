@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var authChecker  = require('../../middleware/auth')
+var authChecker = require('../../middleware/auth')
 var blogController = require('../../controllers/admin/blogController');
 
 
@@ -8,6 +8,8 @@ var blogController = require('../../controllers/admin/blogController');
 router.route('/create')
     .get(authChecker.authChecker, blogController.createGet)
     .post(authChecker.authChecker, blogController.createPost);
+
+router.get('/list', authChecker.authChecker, blogController.list);
 
 // router.get('/getById', indexController.getById);
 

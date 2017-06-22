@@ -1,4 +1,5 @@
-var article = require('../../model/article');
+const mongoose = require('mongoose');
+const Article = require('../../model/article');
 
 module.exports = {
     createGet: (req, res) => {
@@ -8,11 +9,14 @@ module.exports = {
         });
     },
     createPost: (req, res) => {
-        var post = new article({
+        var post = new Article({
             title: "My first post",
             author: "Yash Kumar",
             body: "We want to make documentation obsolete"
         });
+
+
+        post.create(post);
 
         res.send(post)
     }

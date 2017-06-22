@@ -127,6 +127,10 @@ ArticleSchema.methods = {
      * @api private
      */
 
+    create : function (article) {
+        this.save(article);
+    },
+
     addComment: function (user, comment) {
         this.comments.push({
             body: comment.body,
@@ -160,10 +164,6 @@ ArticleSchema.methods = {
         else throw new Error('Comment not found');
         return this.save();
     },
-
-    save: function (article) {
-        new ArticleSchema(article).save();
-    }
 };
 
 /**
@@ -210,5 +210,7 @@ ArticleSchema.statics = {
     }
 };
 
-let article = mongoose.model('Article', ArticleSchema);
-module.exports = article;
+
+var Article = mongoose.model('Article', ArticleSchema);
+
+module.exports = Article;

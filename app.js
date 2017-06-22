@@ -62,11 +62,10 @@ app.use(session({secret: 'ssshhhhh'}));
 
 // Bootstrap models
 const models = join(__dirname, 'model');
-console.log(models);
+// Bootstrap models
 fs.readdirSync(models)
   .filter(file => ~file.search(/^[^\.].*\.js$/))
   .forEach(file => require(join(models, file)));
-
 
 // Bootstrap routes
 app.use('/', index);

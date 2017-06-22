@@ -16,9 +16,12 @@ module.exports = {
         });
 
 
-        post.create(post);
+        post.save(function (err) {
+            if (!err)
+                res.send(post);
+        });
 
-        res.send(post)
+
     }
 
 }

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Article = require('../../model/article');
+const Application = require('../../model/application');
+const Config = require('../../model/config');
 
 module.exports = {
     createGet: (req, res) => {
@@ -12,10 +14,14 @@ module.exports = {
     },
 
     createPost: (req, res) => {
-        var post = new Article({
-            title: "My first post",
-            author: "Yash Kumar",
-            body: "We want to make documentation obsolete"
+        var app = new Application();
+
+        var post = new Config({
+            Application : app,
+            Key : 'Test',
+            Value : 'Test',
+            Description: 'Test',
+            statusId : true
         });
 
         post.save(function (err) {

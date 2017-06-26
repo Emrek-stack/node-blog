@@ -4,21 +4,21 @@ var Schema = mongoose.Schema;
 
 // create a schema
 var configSchema = new Schema({
-    Title: {
+    Application: {
+        type: Schema.Types.ObjectId,
+        ref: 'Application'
+    },
+    Key: {
+        type: String,
+        required: true,
+    },
+    Value: {
         type: String,
         required: true,
     },
     Description: {
         type: String,
         required: true,
-    },
-    Url: {
-        type: String,
-        required: true,
-    },
-    Application: {
-        type: Schema.Types.ObjectId,
-        ref: 'Application'
     },
     createdAt: {
         type: Date,

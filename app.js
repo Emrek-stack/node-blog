@@ -69,7 +69,7 @@ fs.readdirSync(models)
 
 
 
-//TODO: We will bootstrap config here
+//TODO: I will bootstrap config here
 app.use(function (req, res, next) {
     req.root = 'test';
     next();

@@ -16,14 +16,21 @@ var configSchema = new Schema({
         type: String,
         required: true,
     },
-    CreateDate: Date,
-    Price: Number,
+    Application: {
+        type: Schema.Types.ObjectId,
+        ref: 'Application'
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        required: true
+    },
     StatusId: {
         type: Boolean,
         required: true
     }
 });
 
-var Config  = mongoose.model('config', configSchema);
+var Config = mongoose.model('config', configSchema);
 
 module.exports = Config;

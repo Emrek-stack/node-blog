@@ -67,11 +67,21 @@ fs.readdirSync(models)
   .filter(file => ~file.search(/^[^\.].*\.js$/))
   .forEach(file => require(join(models, file)));
 
+
+
+//TODO: We will bootstrap config here
+app.use(function (req, res, next) {
+    req.root = 'test';
+    next();
+});
+
+
 // Bootstrap routes
 app.use('/', index);
 app.use('/users', users);
 app.use('/admin/blog', blog);
 app.use('/admin/user', user);
+
 
 
 connect()

@@ -60,7 +60,12 @@ var ArticleSchema = new Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        required: true
+    },
+    lastUpdatedAt: {
+        type: Date,
+        required: false
     }
 });
 
@@ -127,7 +132,7 @@ ArticleSchema.methods = {
      * @api private
      */
 
-    
+
 
     addComment: function (user, comment) {
         this.comments.push({
@@ -179,8 +184,8 @@ ArticleSchema.statics = {
 
     load: function (_id) {
         return this.findOne({
-                _id
-            })
+            _id
+        })
             .populate('user', 'name email username')
             .populate('comments.user')
             .exec();

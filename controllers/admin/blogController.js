@@ -3,8 +3,10 @@ const Article = require('../../model/article');
 
 module.exports = {
     createGet: (req, res) => {
+        console.log(req.root);
         res.render('admin/blog/create', {
             title: 'aa',
+            root : req.root,
             layout: 'blogLayout.hbs'
         });
     },

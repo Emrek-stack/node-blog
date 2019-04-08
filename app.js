@@ -107,7 +107,7 @@ function connect() {
       }
     }
   };
-  return mongoose.connect("mongodb://blog:wxprj@172.104.129.105/blog", options).connection;
+  return mongoose.connect("mongodb://blog:asdas@asdsadsa/blog", options).connection;
 }
 
 module.exports = app;
